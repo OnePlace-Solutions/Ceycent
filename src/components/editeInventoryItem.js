@@ -30,7 +30,7 @@ const EditItemPage = () => {
     useEffect(() => {
         const fetchSuppliers = async () => {
             try {
-                const response = await axios.get('https://ceycent-server.vercel.app/suplier');
+                const response = await axios.get('https://ceycent-server.vercel.app/supplier');
                 setSuppliers(response.data || []);
             } catch (err) {
                 setError('Failed to fetch suppliers');
