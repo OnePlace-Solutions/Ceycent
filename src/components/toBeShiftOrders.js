@@ -111,8 +111,8 @@ const OrdersPage = () => {
             .order-box { border: 1px solid #000; padding: 15px; margin-bottom: 20px; page-break-inside: avoid; }
             .address-section { display: flex; justify-content: space-between; margin-bottom: 10px; }
             .to-address, .from-address { width: 48%; font-size: 18px; }
-            .to-address { text-align: right; font-weight: bold; } /* Changed to align right */
-            .from-address { text-align: left; } /* Changed to align left */
+            .to-address { text-align: right; font-weight: bold; }
+            .from-address { text-align: left; }
             .customer-info { font-size: 16px; }
             .items-table { width: 100%; margin-bottom: 10px; border-collapse: collapse; }
             .items-table th, .items-table td { border: 1px solid #000; padding: 5px; text-align: left; }
@@ -123,20 +123,24 @@ const OrdersPage = () => {
         `);
         printWindow.document.write('</style></head><body>');
     
-        // Loop through each order and format the details for printing
         orders.forEach(order => {
             printWindow.document.write('<div class="order-box">');
     
-            // Address Section: "To Address" on the right and "From Address" on the left
+            // COD and Total Price
+            printWindow.document.write('<div class="cod">');
+            printWindow.document.write(`<div>COD</div><div>Rs-${order.totalAmount}</div>`);
+            printWindow.document.write('</div>');
+    
+            // Address Section
             printWindow.document.write('<div class="address-section">');
     
-            // From Address (Store Address) - Now on the left
+            // From Address (Store Address)
             printWindow.document.write('<div class="from-address">');
             printWindow.document.write(`<div><strong>From:</strong></div>`);
             printWindow.document.write(`<div>${storeAddress || 'Store Address N/A'}</div>`);
             printWindow.document.write('</div>');
     
-            // To Address (Customer Address) - Now on the right
+            // To Address (Customer Address)
             printWindow.document.write('<div class="to-address">');
             printWindow.document.write(`<div><strong>To:</strong></div>`);
             printWindow.document.write(`<div class="customer-info"><strong>${order.customers[0]?.cusName || 'N/A'}</strong><br>`);
@@ -147,10 +151,21 @@ const OrdersPage = () => {
     
             printWindow.document.write('</div>'); // End of Address Section
     
-            // COD and Total Price
-            printWindow.document.write('<div class="cod">');
-            printWindow.document.write(`<div>COD</div><div>Rs-${order.totalAmount}</div>`);
-            printWindow.document.write('</div>');
+            // Items Section
+            printWindow.document.write('<div><strong>Items Purchased:</strong></div>');
+            printWindow.document.write('<table class="items-table">');
+            printWindow.document.write('<thead><tr><th>Item Name</th><th>Quantity</th><th>Price</th></tr></thead>');
+            printWindow.document.write('<tbody>');
+    
+            order.items.forEach(item => {
+                printWindow.document.write('<tr>');
+                printWindow.document.write(`<td>${item.name}</td>`);
+                printWindow.document.write(`<td>${item.quantity}</td>`);
+                printWindow.document.write(`<td>Rs:${item.sellingPrice}</td>`);
+                printWindow.document.write('</tr>');
+            });
+    
+            printWindow.document.write('</tbody></table>'); // End of Items Table
     
             printWindow.document.write('</div>'); // End of Order Box
         });
