@@ -49,7 +49,7 @@ const OrdersPage = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    await axios.delete(`http://localhost:8000/sale/${id}`);
+                    await axios.delete(`https://ceycent-server.vercel.app/sale/${id}`);
                     Swal.fire('Deleted!', 'Order has been deleted.', 'success');
                     fetchOrders(); // Refresh list after deletion
                 } catch (err) {
