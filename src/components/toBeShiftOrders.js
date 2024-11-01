@@ -160,8 +160,6 @@ const OrdersPage = () => {
             order.items.forEach(item => {
                 printWindow.document.write('<tr>');
                 printWindow.document.write(`<td>${item.name}</td>`);
-                printWindow.document.write(`<td>${item.quantity}</td>`);
-                printWindow.document.write(`<td>Rs:${item.sellingPrice}</td>`);
                 printWindow.document.write('</tr>');
             });
     
