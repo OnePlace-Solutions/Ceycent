@@ -154,7 +154,6 @@ const OrdersPage = () => {
             // Items Section
             printWindow.document.write('<div><strong>Items Purchased:</strong></div>');
             printWindow.document.write('<table class="items-table">');
-            printWindow.document.write('<thead><tr><th>Item Name</th><th>Quantity</th><th>Price</th></tr></thead>');
             printWindow.document.write('<tbody>');
     
             order.items.forEach(item => {
