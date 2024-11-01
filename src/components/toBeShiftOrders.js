@@ -152,7 +152,6 @@ const OrdersPage = () => {
             printWindow.document.write('</div>'); // End of Address Section
     
             // Items Section
-            printWindow.document.write('<div><strong>Items Purchased:</strong></div>');
             printWindow.document.write('<table class="items-table">');
             printWindow.document.write('<tbody>');
     
