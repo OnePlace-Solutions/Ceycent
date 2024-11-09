@@ -103,7 +103,7 @@ const OrdersPage = () => {
         });
     };
 
-    const printOrders = () => {
+   const printOrders = () => {
         const printWindow = window.open('', '_blank');
         printWindow.document.write('<html><head><title>Print Orders</title><style>');
         printWindow.document.write(`
@@ -115,7 +115,7 @@ const OrdersPage = () => {
             .from-address { text-align: left; }
             .customer-info { font-size: 16px; }
             .items-table { width: 100%; margin-bottom: 10px; border-collapse: collapse; }
-            .items-table th, .items-table td { border: 1px solid #000; padding: 5px; text-align: left; }
+            .items-table td { padding: 5px; text-align: left; border: none; } /* Remove borders */
             .total-amount, .cod { font-size: 18px; font-weight: bold; text-align: center; margin-top: 10px; }
             @media print {
                 .order-box { page-break-inside: avoid; }
@@ -156,8 +156,9 @@ const OrdersPage = () => {
             printWindow.document.write('<tbody>');
     
             order.items.forEach(item => {
+                const firstName = item.name.split(' ')[0]; // Get the first name
                 printWindow.document.write('<tr>');
-                printWindow.document.write(`<td>${item.name}</td>`);
+                printWindow.document.write(`<td>${firstName}</td>`); // Print first name only
                 printWindow.document.write('</tr>');
             });
     
