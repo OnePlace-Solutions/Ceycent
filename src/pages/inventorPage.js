@@ -85,8 +85,8 @@ const InventoryPage = () => {
                 <table className="table table-striped">
                     <thead className="thead-dark">
                         <tr>
-                            <th>ID</th>
                             <th>Name</th>
+                            <th>Display Name</th>
                             <th>Tag</th>
                             <th>Cost Price</th>
                             <th>Selling Price</th>
@@ -101,8 +101,8 @@ const InventoryPage = () => {
                     <tbody>
                         {filteredItems.map(item => (
                             <tr key={item.id}>
-                                <td>{item.id}</td>
                                 <td>{item.name}</td>
+                                <td>{item.displayName}</td>
                                 <td>{item.tag}</td>
                                 <td>Rs:{item.costPrice}</td>
                                 <td>Rs:{item.sellingPrice}</td>
