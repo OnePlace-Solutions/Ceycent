@@ -103,7 +103,7 @@ const OrdersPage = () => {
         });
     };
 
-    const printOrders = () => {
+   const printOrders = () => {
         const printWindow = window.open('', '_blank');
         printWindow.document.write('<html><head><title>Print Orders</title><style>');
         printWindow.document.write(`
