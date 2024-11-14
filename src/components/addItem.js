@@ -7,7 +7,6 @@ const AddItemPage = () => {
     const navigate = useNavigate(); // Initialize useNavigate for navigation
     const [item, setItem] = useState({
         name: '',
-        displayName:'',
         description: '',
         tag: '',
         costPrice: '',
@@ -50,7 +49,6 @@ const AddItemPage = () => {
         e.preventDefault();
         try {
             await axios.post('https://ceycent-server.vercel.app/inventory/add', item); // Add the new item
-            console.log(item);
             navigate('/inventory'); // Navigate back to the inventory list after adding the item
         } catch (err) {
             console.error(err); // Log error in case of failure
@@ -73,20 +71,6 @@ const AddItemPage = () => {
                             id="name"
                             name="name"
                             value={item.name}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-
-                    {/* Display Name Field */}
-                    <div className="form-group">
-                        <label htmlFor="displayName">Display Name</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="displayName"
-                            name="displayName"
-                            value={item.displayName}
                             onChange={handleChange}
                             required
                         />
