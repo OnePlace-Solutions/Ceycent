@@ -8,6 +8,7 @@ const AddItemPage = () => {
     const [item, setItem] = useState({
         name: '',
         description: '',
+        displayName: '',
         tag: '',
         costPrice: '',
         sellingPrice: '',
