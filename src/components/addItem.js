@@ -76,6 +76,19 @@ const AddItemPage = () => {
                         />
                     </div>
 
+                    {/* Display Name Field */}
+                    <div className="form-group">
+                        <label htmlFor="displayName">Display Name</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="displayName"
+                            name="displayName"
+                            value={item.displayName}
+                            onChange={handleChange}
+                        />
+                    </div>
+
                     {/* Description Field */}
                     <div className="form-group">
                         <label htmlFor="description">Description</label>
