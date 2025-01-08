@@ -156,7 +156,7 @@ const printOrders = () => {
 
         order.items.forEach(item => {
             printWindow.document.write('<tr>');
-            printWindow.document.write(`<td>${item.itemCode}</td>`); // Print item code
+            printWindow.document.write(`<td>${item.code}</td>`); // Print item code
             printWindow.document.write('</tr>');
         });
         
