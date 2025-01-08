@@ -172,7 +172,7 @@ const Dashboard = () => {
               <div className="card-body">
                 <i className="fas fa-box-open fa-2x mb-2"></i>
                 <h3>{totalOrders}</h3>
-                <h5>To Be Shift Orders</h5>
+                <h5>To Be Deliver Orders</h5>
               </div>
             </div>
           </div>
@@ -194,7 +194,7 @@ const Dashboard = () => {
               <div className="card-body">
                 <i className="fas fa-truck fa-2x mb-2"></i>
                 <h3>{totalShipedOrders}</h3>
-                <h5>Shiped Orders</h5>
+                <h5>Delivered Orders</h5>
               </div>
             </div>
           </div>

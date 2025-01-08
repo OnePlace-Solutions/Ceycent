@@ -6,6 +6,7 @@ import Sidebar from '../components/dashboard'; // Import Sidebar
 const AddItemPage = () => {
     const navigate = useNavigate(); // Initialize useNavigate for navigation
     const [item, setItem] = useState({
+        itemCode: '',
         name: '',
         description: '',
         displayName: '',
@@ -50,6 +51,7 @@ const AddItemPage = () => {
         e.preventDefault();
         try {
             await axios.post('https://ceycent-server.vercel.app/inventory/add', item); // Add the new item
+            console.log(item);
             navigate('/inventory'); // Navigate back to the inventory list after adding the item
         } catch (err) {
             console.error(err); // Log error in case of failure
@@ -63,6 +65,20 @@ const AddItemPage = () => {
                 <h2>Add New Item</h2>
                 {error && <p className="text-danger">{error}</p>} {/* Display error if any */}
                 <form onSubmit={handleSubmit}>
+                    {/* Item Code Field */}
+                    <div className="form-group">
+                        <label htmlFor="itemCode">Item Code</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="itemCode"
+                            name="itemCode"
+                            value={item.itemCode}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+
                     {/* Name Field */}
                     <div className="form-group">
                         <label htmlFor="name">Name</label>

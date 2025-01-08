@@ -129,6 +129,7 @@ const InventorySearch = () => {
                 },
                 items: selectedItems.map(item => ({
                     id: item.id, // Correct field is 'id', not 'itemID'
+                    code: item.itemCode,
                     name: item.name,
                     sellingPrice: item.sellingPrice,
                     quantity: item.quantity,

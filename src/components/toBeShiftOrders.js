@@ -103,74 +103,74 @@ const OrdersPage = () => {
         });
     };
 
-   const printOrders = () => {
-        const printWindow = window.open('', '_blank');
-        printWindow.document.write('<html><head><title>Print Orders</title><style>');
-        printWindow.document.write(`
-            body { font-family: Arial, sans-serif; margin: 20px; }
-            .order-box { border: 1px solid #000; padding: 15px; margin-bottom: 20px; page-break-inside: avoid; }
-            .address-section { display: flex; justify-content: space-between; margin-bottom: 10px; }
-            .to-address, .from-address { width: 48%; font-size: 18px; }
-            .to-address { text-align: right; font-weight: bold; }
-            .from-address { text-align: left; }
-            .customer-info { font-size: 16px; }
-            .items-table { width: 100%; margin-bottom: 10px; border-collapse: collapse; }
-            .items-table td { padding: 5px; text-align: left; border: none; } /* Remove borders */
-            .total-amount, .cod { font-size: 18px; font-weight: bold; text-align: center; margin-top: 10px; }
-            @media print {
-                .order-box { page-break-inside: avoid; }
-            }
-        `);
-        printWindow.document.write('</style></head><body>');
-    
-        orders.forEach(order => {
-            printWindow.document.write('<div class="order-box">');
-    
-            // COD and Total Price
-            printWindow.document.write('<div class="cod">');
-            printWindow.document.write(`<div>COD</div><div>Rs-${order.totalAmount}</div>`);
-            printWindow.document.write('</div>');
-    
-            // Address Section
-            printWindow.document.write('<div class="address-section">');
-    
-            // From Address (Store Address)
-            printWindow.document.write('<div class="from-address">');
-            printWindow.document.write(`<div><strong>From:</strong></div>`);
-            printWindow.document.write(`<div>${storeAddress || 'Store Address N/A'}</div>`);
-            printWindow.document.write('</div>');
-    
-            // To Address (Customer Address)
-            printWindow.document.write('<div class="to-address">');
-            printWindow.document.write(`<div><strong>To:</strong></div>`);
-            printWindow.document.write(`<div class="customer-info"><strong>${order.customers[0]?.cusName || 'N/A'}</strong><br>`);
-            printWindow.document.write(`${order.customers[0]?.cusAddress?.street || 'N/A'},<br>`);
-            printWindow.document.write(`${order.customers[0]?.cusAddress?.city || 'N/A'},<br>`);
-            printWindow.document.write(`${order.customers[0]?.cusPhone1 || 'N/A'}</div>`);
-            printWindow.document.write('</div>');
-    
-            printWindow.document.write('</div>'); // End of Address Section
-    
-            // Items Section
-            printWindow.document.write('<table class="items-table">');
-            printWindow.document.write('<tbody>');
-    
-            order.items.forEach(item => {
-                const firstName = item.name.split(' ')[0]; // Get the first name
-                printWindow.document.write('<tr>');
-                printWindow.document.write(`<td>${firstName}</td>`); // Print first name only
-                printWindow.document.write('</tr>');
-            });
-    
-            printWindow.document.write('</tbody></table>'); // End of Items Table
-    
-            printWindow.document.write('</div>'); // End of Order Box
+const printOrders = () => {
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write('<html><head><title>Print Orders</title><style>');
+    printWindow.document.write(`
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .order-box { border: 1px solid #000; padding: 15px; margin-bottom: 20px; page-break-inside: avoid; }
+        .address-section { display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center; margin-bottom: 10px; }
+        .to-address, .from-address, .cod { text-align: center; font-size: 16px; }
+        .from-address { text-align: left; }
+        .to-address { text-align: right; font-weight: bold; }
+        .cod { font-size: 18px; font-weight: bold; }
+        .items-table { width: 100%; margin-bottom: 10px; border-collapse: collapse; }
+        .items-table td { padding: 5px; text-align: left; border: none; } /* Remove borders */
+        @media print {
+            .order-box { page-break-inside: avoid; }
+        }
+    `);
+    printWindow.document.write('</style></head><body>');
+
+    orders.forEach(order => {
+        printWindow.document.write('<div class="order-box">');
+
+        // Address Section
+        printWindow.document.write('<div class="address-section">');
+
+        // From Address (Store Address)
+        printWindow.document.write('<div class="from-address">');
+        printWindow.document.write(`<div><strong>From:</strong></div>`);
+        printWindow.document.write(`<div>${storeAddress || 'Store Address N/A'}</div>`);
+        printWindow.document.write('</div>');
+
+        // COD (Total Price)
+        printWindow.document.write('<div class="cod">');
+        printWindow.document.write(`<div>COD</div><div>Rs-${order.totalAmount}</div>`);
+        printWindow.document.write('</div>');
+
+        // To Address (Customer Address)
+        printWindow.document.write('<div class="to-address">');
+        printWindow.document.write(`<div><strong>To:</strong></div>`);
+        printWindow.document.write(`<div class="customer-info"><strong>${order.customers[0]?.cusName || 'N/A'}</strong><br>`);
+        printWindow.document.write(`${order.customers[0]?.cusAddress?.street || 'N/A'},<br>`);
+        printWindow.document.write(`${order.customers[0]?.cusAddress?.city || 'N/A'},<br>`);
+        printWindow.document.write(`${order.customers[0]?.cusPhone1 || 'N/A'}</div>`);
+        printWindow.document.write('</div>');
+
+        printWindow.document.write('</div>'); // End of Address Section
+
+        // Items Section
+        printWindow.document.write('<table class="items-table">');
+        printWindow.document.write('<tbody>');
+
+        order.items.forEach(item => {
+            printWindow.document.write('<tr>');
+            printWindow.document.write(`<td>${item.itemCode}</td>`); // Print item code
+            printWindow.document.write('</tr>');
         });
-    
-        printWindow.document.write('</body></html>');
-        printWindow.document.close();
-        printWindow.print();
-    };
+        
+
+        printWindow.document.write('</tbody></table>'); // End of Items Table
+
+        printWindow.document.write('</div>'); // End of Order Box
+    });
+
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    printWindow.print();
+};
+
     
     
     
