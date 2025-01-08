@@ -134,9 +134,9 @@ const OrdersPage = () => {
                                         <div key={index}>
                                             <strong>Item Name:</strong> {item.name} <br />
                                             <strong>Quantity:</strong> {item.quantity} <br />
-                                            <strong>Price:</strong> ${item.sellingPrice} <br />
+                                            <strong>Price:</strong> Rs:{item.sellingPrice} <br />
                                             <strong>Discount:</strong> {item.discount || '0'}% <br />
-                                            <strong>Total:</strong> ${item.total} <br />
+                                            <strong>Total:</strong> Rs:{item.total} <br />
                                             <hr />
                                         </div>
                                     ))}
@@ -154,12 +154,6 @@ const OrdersPage = () => {
                                         onClick={() => completeOrder(order._id)}
                                     >
                                         Complete Order
-                                    </button>
-                                    <button
-                                        className="btn btn-danger"
-                                        onClick={() => deleteOrder(order._id)}
-                                    >
-                                        Delete
                                     </button>
                                 </td>
                             </tr>
