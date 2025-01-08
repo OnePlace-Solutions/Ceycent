@@ -8,7 +8,6 @@ const AddCustomer = () => {
     const [customer, setCustomer] = useState({
         cusID: '',        // Customer ID
         cusName: '',      // Customer Name
-        cusEmail: '',     // Customer Email
         cusPhone1: '',    // Primary Phone
         cusPhone2: '',    // Secondary Phone (optional)
         cusAddress: {
@@ -69,7 +68,7 @@ const AddCustomer = () => {
                         />
                     </div>
 
-                    {/* Customer Email */}
+                    {/* Customer Email (not required) */}
                     <div className="form-group">
                         <label htmlFor="cusEmail">Email</label>
                         <input
@@ -79,7 +78,6 @@ const AddCustomer = () => {
                             className="form-control"
                             value={customer.cusEmail}
                             onChange={handleInputChange}
-                            required
                         />
                     </div>
 

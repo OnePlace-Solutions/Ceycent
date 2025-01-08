@@ -72,6 +72,19 @@ const EditItemPage = () => {
             <div className="container mt-5">
                 <h2>Edit Item</h2>
                 <form onSubmit={handleSubmit}>
+                    {/* itemCode Field */}
+                    <div className="form-group">
+                        <label htmlFor="itemCode">Item Code</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="itemCode"
+                            name="itemCode"
+                            value={item.itemCode || ''} // Default to empty if item is null
+                            onChange={handleChange}
+                        />
+                    </div>
+
                     {/* Name Field */}
                     <div className="form-group">
                         <label htmlFor="name">Name</label>
